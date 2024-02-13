@@ -14,11 +14,18 @@
 <body>
     <h1 class="display-6 text-center mt-4">Chatting App</h1>
 
+    <section id="login" class="border mx-auto" style="width:380px">
+        <div class="d-grid gap-2 ">
+            <input type="text" id="username" placeholder="please enter your name" class="form-control">
+            <button class="btn btn-dark" id="login-btn" type="button">Login</button>
+        </div>
+    </section>
 
 
-    <section class="border mx-auto" style="width:380px">
+
+    <section class="border mx-auto" style="width:380px" id="chat-box">
         <ul id="chat" class="overflow-auto ps-0" style="height:300px">
-             <!-- <li class="border mb-2 p-2 rounded-pill"><span class="fw-bold">Yashu:</span>-> hello there friend</li>
+              <!-- <li class="border mb-2 p-2 rounded-pill"><span class="fw-bold">Yashu:</span>-> hello there friend</li> -->
         </ul>
 
         <textarea id="inp" class="form-control" rows="4"  placeholder="enter your text"></textarea>

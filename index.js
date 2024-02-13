@@ -14,6 +14,8 @@ const path = require('path');
 const socketio = require('socket.io');
 const io = socketio(server);   // io is an object(which stands for input output) which has many methods like io.on() =>  it establsih a connection and accept the event
 // socketio fun ke andar http server pass kr rhe hai and it will create a websocket server
+const users = {};
+// users array m empty object assign kiya hai..means abhi iss array m koi bhi key value pair nhi hai
 app.use('/', express.static(path.join(__dirname,'public')));
 // jab hum root route pr req send krenge means localhost:8080 pr req send krnege toh index.html file render hogi
 
@@ -29,10 +31,16 @@ io.on('connection',(socket)=>{
             // io.emit() is used to show the message to both client and server 
             io.emit('received-msg',{ 
             msg: data.msg,
-            id:socket.id
+            id:socket.id,
+            username:users[socket.id]
 
         })
     })  
+// client se jo login event aaya hai use server side pr listen kr rhe hai using socket.on()
+    socket.on('login',(data)=>{ // socket login even ko listen krega
+        console.log(data);
+        users[socket.id]=data.username;  // mapping the socket.id with username
+    })
 })
 
 
